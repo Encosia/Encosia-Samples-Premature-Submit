@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<head>
+  <title>Premature Submit</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>AJAX call with and without preventDefault()</h1>
+      
+      <p>Without preventDefault(), the button submits the form before the browser has a chance to complete the AJAX request, making it seemingly never happen.</p>
+    </div>
+
+    <form>
+      <div class="row">
+        <div class="col-md-4">
+          <input type="submit" id="get-date-without" class="btn btn-default" value="Get Date without preventDefault()" />
+        </div>
+        <div class="col-md-4">
+          <input type="submit" id="get-date-with" class="btn btn-default" value="Get Date with preventDefault()" />
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="date-placeholder" class="form-control" value="Waiting for a date..." />
+        </div>
+      </div>
+    </form>
+  </div> 
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    $(':submit').on('click', function(evt) {
+      if (this.id === 'get-date-with')
+        evt.preventDefault();
+
+      $.get('/api/date', function(date) {
+        $('#date-placeholder').val(date);
+      });
+    });
+  </script>
+</body>
+</html>
