@@ -20,7 +20,7 @@
           <input type="submit" id="get-date-with" class="btn btn-default" value="Get Date with preventDefault()" />
         </div>
         <div class="col-md-4">
-          <input type="text" id="date-placeholder" class="form-control" value="Waiting for a date..." />
+          <input type="text" id="date" class="form-control" value="Waiting for a date..." />
         </div>
       </div>
     </form>
@@ -33,7 +33,7 @@
         evt.preventDefault();
 
       $.get('/api/date', function(date) {
-        $('#date-placeholder').val(date);
+        $('#date').val(date);
       });
     });
   </script>
